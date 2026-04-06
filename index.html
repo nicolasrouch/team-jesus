@@ -1374,11 +1374,36 @@ function showVersets() {
   if (s.versets.length === 0) {
     liste.innerHTML = '<p class="empty-msg">' + t.versetsVide.replace(/\n/g,'<br>') + '</p>';
   } else {
-    s.versets.forEach(v => {
-      const bloc = document.createElement('div');
-      bloc.className = 'verset-sauvegarde';
-      bloc.innerHTML = '<div class="ref">' + v.ref + '</div><div class="texte">\u00ab ' + v.texte + ' \u00bb</div>';
-      liste.appendChild(bloc);
+    s.versets.forEach((v, i) => {
+      const num = document.createElement('p');
+      num.style.cssText = 'font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#a07840;font-weight:700;margin-bottom:0.5rem;margin-top:'+(i>0?'1.5rem':'0');
+      num.textContent = (langue==='fr'?'Question':langue==='en'?'Question':langue==='es'?'Pregunta':'Domanda') + ' ' + (i+1);
+      liste.appendChild(num);
+
+      const refEl = document.createElement('div');
+      refEl.style.cssText = 'font-family:\'IM Fell English\',serif;font-style:italic;color:#a07840;font-size:1rem;margin-bottom:0.8rem;font-weight:700;';
+      refEl.textContent = v.ref;
+      liste.appendChild(refEl);
+
+      const texteEl = document.createElement('div');
+      texteEl.style.cssText = 'font-size:1.1rem;font-style:italic;color:#000;padding:1rem 1.2rem;border-left:2px solid #a07840;margin-bottom:1rem;font-weight:400;line-height:1.8;';
+      texteEl.textContent = '\u00ab ' + v.texte + ' \u00bb';
+      liste.appendChild(texteEl);
+
+      const b1 = document.createElement('div');
+      b1.className = 'meditation-bloc';
+      b1.innerHTML = '<div class="meditation-titre">' + t.titreResume + '</div><div class="meditation-texte" style="color:#000;">' + (v.resume||'') + '</div>';
+      liste.appendChild(b1);
+
+      const b2 = document.createElement('div');
+      b2.className = 'meditation-bloc';
+      b2.innerHTML = '<div class="meditation-titre">' + t.titreCoeur + '</div><div class="meditation-texte" style="color:#000;">' + (v.coeur||'') + '</div>';
+      liste.appendChild(b2);
+
+      const b3 = document.createElement('div');
+      b3.className = 'meditation-bloc';
+      b3.innerHTML = '<div class="meditation-titre">' + t.titreInvitation + '</div><div class="meditation-texte" style="color:#000;">' + (v.invitation||'') + '</div>';
+      liste.appendChild(b3);
     });
   }
   showPage('page-versets');
