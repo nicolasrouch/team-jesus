@@ -2057,14 +2057,14 @@ function showVersets() {
 function showStats() {
   const t = UI[langue];
   const st = getStats();
-  document.getElementById('stats-titre').textContent = t.statsTitre;
-  document.getElementById('stat-streak').textContent = st.streak || 0;
-  document.getElementById('stat-streak-label').textContent = '🔥 ' + t.streakLabel;
-  document.getElementById('stat-semaine').textContent = st.semaineTotal || 0;
-  document.getElementById('stat-semaine-label').textContent = t.semaineLabel;
-  document.getElementById('stat-total').textContent = st.total || 0;
-  document.getElementById('stat-total-label').textContent = t.totalLabel;
-  document.getElementById('btn-retour-stats').textContent = t.retourMenu;
+  if(document.getElementById('stats-titre')) document.getElementById('stats-titre').textContent = t.statsTitre;
+  if(document.getElementById('stat-streak')) document.getElementById('stat-streak').textContent = st.streak || 0;
+  if(document.getElementById('stat-streak-label')) document.getElementById('stat-streak-label').textContent = '🔥 ' + t.streakLabel;
+  if(document.getElementById('stat-semaine')) document.getElementById('stat-semaine').textContent = st.semaineTotal || 0;
+  if(document.getElementById('stat-semaine-label')) document.getElementById('stat-semaine-label').textContent = t.semaineLabel;
+  if(document.getElementById('stat-total')) document.getElementById('stat-total').textContent = st.total || 0;
+  if(document.getElementById('stat-total-label')) document.getElementById('stat-total-label').textContent = t.totalLabel;
+  if(document.getElementById('btn-retour-stats')) document.getElementById('btn-retour-stats').textContent = t.retourMenu;
   showPage('page-stats');
 }
 
@@ -2182,7 +2182,7 @@ function majUI() {
   document.getElementById('drawer-titre').textContent = t.drawerTitre;
   document.getElementById('limite-msg').textContent = t.limiteMsg;
   if(document.getElementById('btn-abonner')) if(document.getElementById('btn-abonner')) document.getElementById('btn-abonner').textContent = t.btnAbonner;
-  document.getElementById('btn-retour-limite').textContent = t.retour;
+  if(document.getElementById('btn-retour-limite')) document.getElementById('btn-retour-limite').textContent = t.retour;
   document.title = t.titre;
   majCompteurBar();
   majStreak();
